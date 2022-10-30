@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
             address = convert_address(mem_request);
             direct_mapped_cache_access(&d_cache, address);
         }
-        /Print out the results/
+        /*Print out the results*/
         printf("\n==================================\n");
         printf("Cache type:    Direct-Mapped Cache\n");
         printf("==================================\n");
@@ -92,7 +92,7 @@ uint64_t convert_address(char memory_addr[])
             }
             if(memory_addr[i] == 'b' || memory_addr[i] == 'B') {
                                                                                                                                             89,8          46%
- binary = (binary*16) + 11;
+                binary = (binary*16) + 11;
             }
             if(memory_addr[i] == 'c' || memory_addr[i] == 'C') {
                 binary = (binary*16) + 12;
