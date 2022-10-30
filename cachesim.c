@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 
     char* trace_file_name = argv[2];
 
-		/* Declare Our caches of struct */
+		/* Declaring the caches of struct */
     struct direct_mapped_cache 					d_cache;
 		struct fully_associative_cache 			f_cache;
 		struct n_way_set_associative_cache 	n_cache;
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 		FILE *outfp;
 
 		/*********************************************/
-    /* Initialization  our three structs of cache*/
+    /* Initialization  the three structs of cache*/
 		/*********************************************/
 
 		/* Direct-associative cache */
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
         n_cache.dirty_field[i] = 0;
 				
         
-				// Initialize all tag fields to zero
+				// Initialization of all tag fields to zero
 				for (int k=0; k<WAY_SIZE; k++){
 					n_cache.tag_field[i][k] = 0;
 				}
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 
 
 
-    /* Variables used for [PART 1] */
+    /* [PART 1] Variables */
     float total = 0;
     float cache_miss_rate = 0;
     float cache_hit_rate = 0;
@@ -94,17 +94,14 @@ int main(int argc, char *argv[])
     fp = fopen(trace_file_name, "r");
 		outfp = fopen("[Part-3]full_64KB-output.txt", "w");
 
-		
 
-		//*********************************************************************
-
-    if (strncmp(argv[1], "direct", 6)==0) { /* Simulating direct-mapped cache */
-        /* Read the memory request address and access the cache */
+    if (strncmp(argv[1], "direct", 6)==0) { /* Simulation of direct-mapped cache */
+        /* Reads the memory request address and access the cache */
         while (fgets(mem_request, 20, fp)!= NULL) {
             address = convert_address(mem_request);
             direct_mapped_cache_access(&d_cache, address);
         }
-        /*Print out the results*/
+        /*Printing out the results*/
         fprintf(outfp,"\n==================================\n");
         fprintf(outfp,"Cache type:    Direct-Mapped Cache\n");
 				fprintf(outfp,"Block Size:		%d bytes\n", BLOCK_SIZE);
@@ -115,7 +112,7 @@ int main(int argc, char *argv[])
         fprintf(outfp,"Cache Misses:  %d\n", d_cache.misses);
         fprintf(outfp,"\n");
 
-        /* Manipulated Code to calculate hit rate & miss rate of a cache [PART 1]*/
+        /* Manipulated Code to calculate hit rate & miss rate of a cache for [PART 1]*/
         total = d_cache.misses + d_cache.hits;
         cache_hit_rate = d_cache.hits / total;
         cache_miss_rate = d_cache.misses / total;
@@ -129,8 +126,8 @@ int main(int argc, char *argv[])
 
 		//*********************************************************************
 
-		else if (strncmp(argv[1], "full", 6)==0) { /* Simulating Fully-associative cache */
-        /* Read the memory request address and access the cache */
+		else if (strncmp(argv[1], "full", 6)==0) { /* Simulation of Fully-associative cache */
+        /* Reads the memory request address and access the cache */
         while (fgets(mem_request, 20, fp)!= NULL) {
             address = convert_address(mem_request);
             fully_associative_cache_access(&f_cache, address);
